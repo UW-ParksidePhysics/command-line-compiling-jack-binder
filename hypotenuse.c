@@ -1,3 +1,5 @@
+// this complies files, for c= files, after getting the hypotenuse and side lengths
+//Modified by Jack Binder, 2022-05-02 
 #include <math.h>
 
 
