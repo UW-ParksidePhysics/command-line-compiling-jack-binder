@@ -1,5 +1,6 @@
 #include <math.h>
 
+
 double hypotenuse(int a, int b)
 {
     double c;
@@ -7,3 +8,4 @@ double hypotenuse(int a, int b)
     c = sqrt(pow((double)a, 2) + pow((double)b, 2));
     return c;
 }
+
