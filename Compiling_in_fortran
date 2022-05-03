@@ -1,23 +1,69 @@
-program calculate_pythagorean_triples
+guest@sirius:~/PHYS241Spring2022/jack$ nano calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ f77 calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ ls -l
+total 32
+-rwxr-xr-x 1 guest guest 9032 May  2 14:44 a.out
+-rw-r--r-- 1 guest guest  583 May  2 14:37 calculate_pythagorean_triples.c
+-rw-r--r-- 1 guest guest  520 May  2 14:43 calculate_pythagorean_triples.f90
+-rwxr-xr-x 1 guest guest 8864 May  2 14:37 triples.x
+guest@sirius:~/PHYS241Spring2022/jack$ ./a.out
+   3   4   5
+   5  12  13
+   6   8  10
+   7  24  25
+   8  15  17
+   9  12  15
+   9  40  41
+  10  24  26
+  12  16  20
+  12  35  37
+  15  20  25
+  15  36  39
+  16  30  34
+  18  24  30
+  20  21  29
+  21  28  35
+  24  32  40
+  27  36  45
+guest@sirius:~/PHYS241Spring2022/jack$ nano hypotenuse.f90
+guest@sirius:~/PHYS241Spring2022/jack$ f77  hypotenuse.f90
+/usr/lib/gcc/x86_64-linux-gnu/6/../../../x86_64-linux-gnu/Scrt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+guest@sirius:~/PHYS241Spring2022/jack$ f77  hypotenuse.f90
+/usr/lib/gcc/x86_64-linux-gnu/6/../../../x86_64-linux-gnu/Scrt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+guest@sirius:~/PHYS241Spring2022/jack$ f77 -c  hypotenuse.f90
+guest@sirius:~/PHYS241Spring2022/jack$ ls -l
+total 28
+-rw-r--r-- 1 guest guest  583 May  2 14:37 calculate_pythagorean_triples.c
+-rw-r--r-- 1 guest guest  520 May  2 14:43 calculate_pythagorean_triples.f90
+-rw-r--r-- 1 guest guest  142 May  2 14:49 hypotenuse.f90
+-rw-r--r-- 1 guest guest 1296 May  2 14:50 hypotenuse.o
+-rwxr-xr-x 1 guest guest 8864 May  2 14:37 triples.x
+guest@sirius:~/PHYS241Spring2022/jack$ nano calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ f77 -c calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ nano calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ f77 -c calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ f77 -o triples_f90.x calculate_pythagorean_triples.o hypotenuse.o
+guest@sirius:~/PHYS241Spring2022/jack$ ./triples_f90.x
+   3   4   5
+   5  12  13
+   6   8  10
+   7  24  25
+   8  15  17
+   9  12  15
+   9  40  41
+  10  24  26
+  12  16  20
+  12  35  37
+  15  20  25
+  15  36  39
+  16  30  34
+  18  24  30
+  20  21  29
+  21  28  35
+  24  32  40
+  27  36  45
 
-    implicit none
-
-    integer :: a, b
-    real :: c
-
-    real, parameter :: epsilon = 1d-3
-    integer, parameter :: maximum_c = 50
-
-
-    do a = 1, maximum_c
-        do b = a, maximum_c
-            call hypotenuse(a, b, c)
-            if ( c < real(maximum_c) ) then
-                if ( c - floor(c) < epsilon ) then
-                    write(*,'(3i4)') a, b, int(c)
-                endif
-            endif
-        enddo
-    enddo
-
-end program calculate_pythagorean_triples
