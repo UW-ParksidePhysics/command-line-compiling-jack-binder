@@ -1,29 +1,87 @@
-# include <stdio.h>
-# include <math.h>
-# include <stdlib.h>
-double hypotenuse( int a, int b);
-
-int main(int argc, char* argv[])
-{
-    int a, b, maximum_c;
-    double c;
-
-    double epsilon = 1e-3;
-    if (argc == 1) {
-       maximum_c = 50;
-    } else {
-       maximum_c = atoi(argv[1]);
-    }
-
-    for (a = 1; a < maximum_c; a++) {
-        for (b = a; b < maximum_c; b++) {
-            c = hypotenuse(a, b);
-            if ( (c <= (double)(maximum_c) ) &&
-                 (c - floor(c) < epsilon ) ) {
-               printf("%4d%4d%4d\n", a, b, (int)c);
-            }
-        }
-    }
-    return 0;
-}
-
+guest@sirius:~/PHYS241Spring2022$ mkdir(jack);cd(jack)
+-bash: syntax error near unexpected token `jack'
+guest@sirius:~/PHYS241Spring2022$ mkdir jack;cd jack
+guest@sirius:~/PHYS241Spring2022/jack$ cp ../source/* .
+guest@sirius:~/PHYS241Spring2022/jack$ ls
+calculate_pythagorean_triples.c  calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ cc calculate_pythagorean_triples.c
+/tmp/ccFv1QjF.o: In function `main':
+calculate_pythagorean_triples.c:(.text+0x45): undefined reference to `pow'
+calculate_pythagorean_triples.c:(.text+0x60): undefined reference to `pow'
+calculate_pythagorean_triples.c:(.text+0x6a): undefined reference to `sqrt'
+calculate_pythagorean_triples.c:(.text+0x95): undefined reference to `floor'
+collect2: error: ld returned 1 exit status
+guest@sirius:~/PHYS241Spring2022/jack$ cc calculate_pythagorean_triples.c -lm
+guest@sirius:~/PHYS241Spring2022/jack$ ls
+a.out  calculate_pythagorean_triples.c  calculate_pythagorean_triples.f90
+guest@sirius:~/PHYS241Spring2022/jack$ ./a.out
+   3   4   5
+   5  12  13
+   6   8  10
+   7  24  25
+   8  15  17
+   9  12  15
+   9  40  41
+  10  24  26
+  12  16  20
+  12  35  37
+  14  48  50
+  15  20  25
+  15  36  39
+  16  30  34
+  18  24  30
+  20  21  29
+  21  28  35
+  24  32  40
+  27  36  45
+  30  40  50
+guest@sirius:~/PHYS241Spring2022/jack$ ./a.out | wc -l
+20
+guest@sirius:~/PHYS241Spring2022/jack$ cc calculate_pythagorean_triples.c -lm -o triples.x
+guest@sirius:~/PHYS241Spring2022/jack$ ./triples.x
+   3   4   5
+   5  12  13
+   6   8  10
+   7  24  25
+   8  15  17
+   9  12  15
+   9  40  41
+  10  24  26
+  12  16  20
+  12  35  37
+  14  48  50
+  15  20  25
+  15  36  39
+  16  30  34
+  18  24  30
+  20  21  29
+  21  28  35
+  24  32  40
+  27  36  45
+  30  40  50
+guest@sirius:~/PHYS241Spring2022/jack$ nano calculate_pythagorean_triples.c
+guest@sirius:~/PHYS241Spring2022/jack$ ./triples.x
+   3   4   5
+   5  12  13
+   6   8  10
+   7  24  25
+   8  15  17
+   9  12  15
+   9  40  41
+  10  24  26
+  12  16  20
+  12  35  37
+  14  48  50
+  15  20  25
+  15  36  39
+  16  30  34
+  18  24  30
+  20  21  29
+  21  28  35
+  24  32  40
+  27  36  45
+  30  40  50
+guest@sirius:~/PHYS241Spring2022/jack$ cc calculate_pythagorean_triples.c -lm -o triples.x
+guest@sirius:~/PHYS241Spring2022/jack$ ./triples.x 10
+   3   4   5
+   6   8  10
